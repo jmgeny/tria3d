@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Reemplazar</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+</head>
+<body>
+	<div class="container" id="app">
+		<h1>Reemplazar slug</h1>
+		<form action="">
+			<div class="form-group">
+				<label for="nombre">Nombre</label>
+				<input v-model='nombre' type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre">
+			</div>
+			<div class="form-group">
+				<label for="slug">Slug</label>
+				<input disabled v-model=generarSlug type="text" class="form-control" name="slug" id="slug" placeholder="slug"
+				>
+			
+			</div>
+			<div class="form-group">
+				<label for="descripcion">Descripción</label>
+				<textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripción"></textarea>
+			</div>
+		</form>
+		{{ nombre }}
+		<br>
+		{{ generarSlug }}
+		
+	</div>
+
+
+<script>
+	var app = new Vue({
+		el: '#app',// se va a recargar el id formulario
+		data: {
+			nombre: 'Juan Manuel'
+		},
+		computed: {
+			generarSlug: function() {
+				var char = {
+					"á":"a","é":"e","í":"i","ó":"o","ú":"u",
+					"Á":"A","É":"E","Í":"I","Ó":"O","Ú":"U",
+					"ñ":"n","Ñ":"N","_":"-"," ":"-"
+				}
+				var exp = /[áéíúóÁÉÚÍÓÑñ_ ]/g;
+
+				return this.nombre.trim().replace(exp, function(e){
+					return char[e]
+				}).toLowerCase();
+
+				
+			}
+		} 
+
+	});
+</script>	
+</body>
+</html>

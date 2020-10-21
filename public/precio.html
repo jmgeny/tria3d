@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Determinar Precios</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- versión de desarrollo, incluye advertencias de ayuda en la consola -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- versión de producción, optimizada para tamaño y velocidad -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script>	 -->
+	<!-- axios	 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>	
+	<!-- sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+	<div class="container" id="determinarPrecio">
+		<h3>Determinar Precio</h3>
+				<!-- /.card Precios-->
+				<div class="card card-success">
+					<div class="card-header">
+						<h3 class="card-title">Sección de Precios</h3>
+					</div>
+					<!-- /.card-header -->
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Precio anterior</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">$</span>
+										</div>
+										<input v-model="precio_anterior"
+										class="form-control" type="number" id="precio_anterior" name="precio_anterior" min="0" value="0" step=".01">                 
+									</div>
+								</div>
+								<!-- /.form-group -->
+							</div>
+							<!-- /.col -->
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Precio actual</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text">$</span>
+										</div>
+										<input v-model="precio_actual"
+										class="form-control" type="number" id="precio_actual" name="precio_actual" min="0" value="0" step=".01">                 
+									</div>
+									<br>
+									<span id="descuento">
+										<!-- funcion computada -->
+										{{ generarDescuento }}
+									</span>
+								</div>
+								<!-- /.form-group -->
+							</div>
+							<!-- /.col -->
+							<div class="col-md-6">
+								<div class="form-group">
+
+									<label>Porcentaje de descuento</label>
+									<div class="input-group">                  
+										<input v-model="porcentaje_descuento"
+										class="form-control" type="number" id="porcentaje_descuento" name="porcentaje_descuento" step="any" min="0" max="100" value="0" >    <div class="input-group-prepend">
+											<span class="input-group-text">%</span>
+										</div>  
+
+									</div>
+
+									<br>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" 
+										v-bind:style="{width: porcentaje_descuento+'%'}" 
+										aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ porcentaje_descuento }}</div>
+									</div>
+								</div>
+								<!-- /.form-group -->
+								
+							</div>
+							<!-- /.col -->
+
+
+						</div>
+						<!-- /.row -->
+
+
+					</div>
+					<!-- /.card-body -->
+					<div class="card-footer">
+						
+					</div>
+				</div>
+	</div>
+
+
+<script>
+	var determinarPrecio = new Vue({
+		el: '#determinarPrecio',// se va a recargar el id formulario
+		data: {
+			precio_anterior:0,
+			precio_actual:0,
+			porcentaje_descuento:0,
+			descuento: 0,
+			descuento_mensaje: 'Producto sin descuento'
+		},
+		computed: {
+			generarDescuento: function() {
+
+				if (this.porcentaje_descuento > 100) {
+					swal("Error", "El porcentaje no puede ser mayor a 100", "error");
+					this.porcentaje_descuento = 100;
+				} else if (this.porcentaje_descuento < 0) {
+					swal("Error", "El porcentaje no puede ser menor a 0", "error");
+					this.porcentaje_descuento = 0;
+				} 
+
+
+
+				if (this.porcentaje_descuento > 0) 
+				{
+					this.descuento = (this.precio_anterior * this.porcentaje_descuento) / 100;
+					this.precio_actual = this.precio_anterior - this.descuento;
+					
+
+					if (this.porcentaje_descuento == 100) {
+						this.descuento_mensaje = 'Este producto esta bonificado el 100%';
+					} else {
+						this.descuento_mensaje = 'Hay un monto de descuento de $ '+ this.descuento;
+					}
+
+				}
+				else
+				{
+					this.precio_actual = this.precio_anterior;
+					this.descuento_mensaje = 'Producto sin descuento';
+				}
+
+				return this.descuento_mensaje;
+				
+				}
+		}, 
+
+	});
+</script>	
+
+</body>
+</html>
+
