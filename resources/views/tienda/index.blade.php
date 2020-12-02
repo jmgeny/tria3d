@@ -14,9 +14,6 @@
 {{-- header, home, producto, lo mas vendido --}}
 @include('tienda.super_container')
 	
-	<br>
-	<br>
-	<br>
 
 	<!-- En oferta -->
 {{-- @include('tienda.oferta') --}}
@@ -24,14 +21,14 @@
 	{{-- </div>  --}}
 	{{-- ¿? --}}
 
-<br>
-<br>
-<br>
+
 
 <!-- Boxes -->
 {{-- @include('tienda.boxes') --}}
 
 <!-- Features -->
 {{-- @include('tienda.features') --}}
+
+
 
 @endsection

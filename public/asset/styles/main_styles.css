@@ -68,7 +68,7 @@ p
 	font-size: 16px;
 	line-height: 1.5;
 	font-weight: 300;
-	color: #969696;
+	color: #505050;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -328,7 +328,7 @@ section
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: #FFFFFF;
+	background: #fbba28;
 	z-index: 100;
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
@@ -376,6 +376,7 @@ section
 .header.scrolled
 {
 	box-shadow: 0px 5px 15px rgba(0,0,0,0.08);
+	background: #FFFFFF;
 }
 .logo a > div > div:last-child
 {
@@ -757,6 +758,17 @@ section
 	height: 100vh;
 	padding-top: 79px;
 }
+
+.principal {
+		padding-top: 79px;
+		padding-bottom: 10px;
+	}
+
+.img_producto {
+		width: 50%;
+		align-self: center;
+}	
+
 .home_slider_container
 {
 	width: 100%;

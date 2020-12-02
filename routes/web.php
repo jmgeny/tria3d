@@ -59,4 +59,5 @@ Route::resource('/user','UserController')->except(['create','store'])->names('us
 //     return view('tienda.index');
 // });
 
-Route::get('/','TiendaController@index');
+Route::get('/','TiendaController@index')->name('tienda');
+route::get('product/{slug}','TiendaController@product')->name('product');

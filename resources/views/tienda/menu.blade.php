@@ -8,13 +8,13 @@
 		</form>
 	</div>
 	<!-- Navigation -->
-	<div class="menu_nav">
+{{-- 	<div class="menu_nav">
 		<ul>
 			<li><a href="#">Women</a></li>
 			<li><a href="#">Men</a></li>
 			<li><a href="#">Kids</a></li>			
 		</ul>
-	</div>
+	</div> --}}
 	<!-- Contact Info -->
 	<div class="menu_contact">
 		<div class="menu_phone d-flex flex-row align-items-center justify-content-start">

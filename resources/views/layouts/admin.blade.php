@@ -178,7 +178,7 @@
         @guest
         <a href="#" class="d-block">Sin conección</a>
         @else
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{ route('user.show',Auth::user()->id) }}" class="d-block">{{ Auth::user()->name }}</a>
         @endguest  
         </div>
       </div>

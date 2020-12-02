@@ -17,15 +17,16 @@
 	<!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+
 @yield('styles')
 
 
 </head>
 <body>
 <div id="app">	
-
 	<!-- Menu -->
 	@include('tienda.menu')
+	@include('tienda.header')
 
 	<!-- Menu -->
 
